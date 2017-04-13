@@ -1,4 +1,4 @@
-angular.module('NerdServie', []).factory('Nerd', ['$http', function($http){
+angular.module('NerdService', []).factory('Nerd', ['$http', function($http){
     return {
         // call to get all nerds
         get : function(){
