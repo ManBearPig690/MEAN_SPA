@@ -10,7 +10,7 @@ module.exports = function(app){
 
     // sample api route
     app.get('/api/nerds', function(req, res){
-
+        console.log("GET called!");
         // use mongose to get all nerds in the database
         Nerd.find(function(err, nreds){
             
@@ -28,7 +28,7 @@ module.exports = function(app){
     // frontend routes
     // route to handle all angular requests
     app.get('*', function(req, res){
-        res.sendfile('./public/views/index.html'); // load our page
+        res.sendFile('/public/views/index.html', {root: './'}); // load our page
     });
 
 };

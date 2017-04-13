@@ -3,6 +3,7 @@
 /// MODULES
 var express = require('express');
 var app = express();
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride  = require('method-override');
 
@@ -15,7 +16,7 @@ var db = require('./config/db'); // db config
 var port = process.env.PORT || 8080;
 
 // connec to db => uncomment after config/db.js is created and configed.
-//mongoose.connect(db.url);
+mongoose.connect(db.url);
 
 //parse application/json
 app.use(bodyParser.json());
