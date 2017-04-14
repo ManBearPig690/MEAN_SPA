@@ -12,13 +12,25 @@ module.exports = function(app){
     app.get('/api/nerds', function(req, res){
         console.log("GET called!");
         // use mongose to get all nerds in the database
-        Nerd.find(function(err, nreds){
+        Nerd.find({}, function(err, nerds){
             
             // check for an error while retrieving
             if(err)
                 res.send(err);
 
             res.json(nerds);
+        });
+    });
+
+    app.post('/api/nerd', function(req, res){
+        var nerd = new Nerd();
+        nerd.name = req.body.name;
+        console.log(nerd);
+        nerd.save(function(err){
+            if(err)
+                res.send(err);
+
+            res.json({message: 'Nerd Created!'});
         });
     });
 

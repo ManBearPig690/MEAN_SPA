@@ -1,4 +1,9 @@
 var mongoose = require('mongoose');
-module.exports = mongoose.model('Nerd',{
-    name : {type: String, default: ''}
+
+var Schema = mongoose.Schema;
+
+var NerdSchema = new Schema({
+    name : { type: String }
 });
+
+module.exports = mongoose.model('Nerd', NerdSchema);
