@@ -6,6 +6,9 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride  = require('method-override');
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 // INITIAL CONFIG
 
@@ -17,6 +20,9 @@ var port = process.env.PORT || 8080;
 
 // connec to db => uncomment after config/db.js is created and configed.
 mongoose.connect(db.url);
+
+// read cookies needed for auth
+app.use(cookieParser()); 
 
 //parse application/json
 app.use(bodyParser.json());

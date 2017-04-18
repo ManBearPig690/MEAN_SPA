@@ -7,8 +7,8 @@ var Nerd = require('./models/nerd');
 module.exports = function(app){
     // server routes
 
-
     // sample api route
+    // Content-Type: application/x-www-form-urlencoded && application/json
     app.get('/api/nerds', function(req, res){
         console.log("GET called!");
         // use mongose to get all nerds in the database
