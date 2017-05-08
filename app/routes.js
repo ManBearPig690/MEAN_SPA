@@ -2,9 +2,9 @@
 
 // grab the nerd model
 var Nerd = require('./models/nerd');
+var User = require('./models/user.js');
 
-
-module.exports = function(app){
+module.exports = function(app, passport){
     // server routes
 
     // sample api route
