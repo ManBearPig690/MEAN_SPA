@@ -1,14 +1,8 @@
-angular.module('NavService', []).factory('Nav',['$http', function($http){
-    return{
-        get: function(){
-            return $http.get('/checkLogin')
-            .success(function(data){
-                console.log(data);
-                return data;
-            })
-            .error(function(data){
-                console.log('error:' +data);
-            });
+angular.module('NavService', []).factory('Nav', ['$http', function($http){
+    return {
+        // call to get all nerds
+        get : function(){
+            return $http.get('/api/checkLogin');
         }
-    }
+    };
 }]);

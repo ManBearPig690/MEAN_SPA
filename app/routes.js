@@ -45,6 +45,16 @@ module.exports = function(app, passport){
         });
     });
 
+    app.get('/api/checkLogin', function(req, res){
+        if(req.isAuthenticated){
+            res.send(true);
+        }
+        else{
+            res.send(false)
+        }
+
+    })
+    
     // frontend routes
     // route to handle all angular requests
 
@@ -52,9 +62,11 @@ module.exports = function(app, passport){
         res.sendFile('/public/views/index.html', {root: './'});
     });
 
-    app.get('*', isAuthenticated, function(req, res){
+    app.get('*', function(req, res){
         res.sendFile('/public/views/index.html', {root: './'}); // load our page
     });
+
+
 
     // route middleware to make sure user is logged in
     function isAuthenticated(req, res, next){
