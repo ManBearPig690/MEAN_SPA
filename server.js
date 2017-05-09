@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var methodOverride  = require('method-override');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
+var session = require('express-session');
 
 // INITIAL CONFIG
 
@@ -23,6 +24,13 @@ mongoose.connect(db.url);
 
 // read cookies needed for auth
 app.use(cookieParser()); 
+
+
+//intialize passport
+app.use(session({secret: 'secret'}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 //parse application/json
 app.use(bodyParser.json());
@@ -39,8 +47,16 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
 
+
+
+// CONFIGURE PASSPORT
+
+require('./config/passport')(passport); // same as app.require('./app/passport.js')
+
 // ROUTES
-require('./app/routes')(app); // configure the routes
+require('./app/routes')(app, passport); // configure the routes
+
+//configure passport
 
 
 // STATR APP
