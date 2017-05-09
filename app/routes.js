@@ -1,31 +1,26 @@
 // app/routes.js
 
 // grab the nerd model
-var Nerd = require('./models/nerd');
+var Nerd = require('./models/nerd.js');
 
 
-module.exports = function(app){
+module.exports = function(app, passport){
     // server routes
-
-    // login routes
-    app.post('/login',
-        passport.authenticate('local',{
-            successRedirect: '/loginSuccess',
-            failureRedirect: '/loginFailure'
-        })
-    );
-
-    app.get('/loginFailure', function(req, res, next){
-        res.send('Failed to authenticate');
-    });
-
-    app.get('/loginSuccess', function(req, res, next){
-        res.send('Successfully authenticated');
-    });
+    app.post('/api/signup', passport.authenticate('local-signup', {
+        successredirect: '/profile',
+        failureRedirect: '/signup',
+        failureFlash: true
+    }));
+    
+    app.post('/login', passport.authenticate('local-login',{
+        successredirect: '/profile',
+        failureRedirect: '/login',
+        failureFlash: true
+    }));
 
     // sample api route
     // Content-Type: application/x-www-form-urlencoded && application/json
-    app.get('/api/nerds', function(req, res){
+    app.get('/api/nerds', isAuthenticated, function(req, res){
         console.log("GET called!");
         // use mongose to get all nerds in the database
         Nerd.find({}, function(err, nerds){
@@ -38,7 +33,7 @@ module.exports = function(app){
         });
     });
 
-    app.post('/api/nerd', function(req, res){
+    app.post('/api/nerd', isAuthenticated, function(req, res){
         var nerd = new Nerd();
         nerd.name = req.body.name;
         console.log(nerd);
@@ -49,14 +44,21 @@ module.exports = function(app){
             res.json({message: 'Nerd Created!'});
         });
     });
-
-    // rest of crud
-
-
+    
     // frontend routes
     // route to handle all angular requests
-    app.get('*', function(req, res){
+    app.get('*', isAuthenticated, function(req, res){
         res.sendFile('/public/views/index.html', {root: './'}); // load our page
     });
+
+    // route middleware to make sure user is logged in
+    function isAuthenticated(req, res, next){
+        // if user is authenticated in session, move along...
+        if(req.isAuthenticated())
+            return next();
+
+        // if not...
+        res.redirect('/login');
+    }
 
 };

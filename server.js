@@ -7,8 +7,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride  = require('method-override');
 var cookieParser = require('cookie-parser');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+
 
 // INITIAL CONFIG
 
@@ -45,8 +44,14 @@ app.use(express.static(__dirname + '/public'));
 
 
 
+// CONFIGURE PASSPORT
+
+require('./config/passport')(passport); // same as app.require('./app/passport.js')
+
 // ROUTES
 require('./app/routes')(app); // configure the routes
+
+//configure passport
 
 
 // STATR APP
