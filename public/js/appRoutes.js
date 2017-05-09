@@ -15,7 +15,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     })
     .when('/profile', {
         templateUrl: 'views/profile.html',
-        config: 'ProfileController'
+        controller: 'ProfileController'
     })
     .when('/nerds',{
         templateUrl: 'views/nerd.html',

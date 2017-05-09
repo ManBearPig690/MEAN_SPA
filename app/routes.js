@@ -12,7 +12,7 @@ module.exports = function(app, passport){
         failureFlash: true
     }));
     
-    app.post('/login', passport.authenticate('local-login',{
+    app.post('/api/login', passport.authenticate('local-login',{
         successredirect: '/profile',
         failureRedirect: '/login',
         failureFlash: true
@@ -47,6 +47,11 @@ module.exports = function(app, passport){
 
     // frontend routes
     // route to handle all angular requests
+
+    app.get('/login', function(req, res){
+        res.sendFile('/public/views/index.html', {root: './'});
+    });
+
     app.get('*', isAuthenticated, function(req, res){
         res.sendFile('/public/views/index.html', {root: './'}); // load our page
     });
@@ -58,6 +63,7 @@ module.exports = function(app, passport){
             return next();
 
         // if not...
+        console.log("redirect to login");
         res.redirect('/login');
     }
 
