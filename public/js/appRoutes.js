@@ -8,6 +8,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     .when('/nerds',{
         templateUrl: 'views/nerd.html',
         controller: 'NerdController'
+    })
+    .when('/login',{
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
     });
     $locationProvider.html5Mode(true);
 }]);

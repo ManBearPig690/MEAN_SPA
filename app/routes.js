@@ -7,6 +7,22 @@ var Nerd = require('./models/nerd');
 module.exports = function(app){
     // server routes
 
+    // login routes
+    app.post('/login',
+        passport.authenticate('local',{
+            successRedirect: '/loginSuccess',
+            failureRedirect: '/loginFailure'
+        })
+    );
+
+    app.get('/loginFailure', function(req, res, next){
+        res.send('Failed to authenticate');
+    });
+
+    app.get('/loginSuccess', function(req, res, next){
+        res.send('Successfully authenticated');
+    });
+
     // sample api route
     // Content-Type: application/x-www-form-urlencoded && application/json
     app.get('/api/nerds', function(req, res){

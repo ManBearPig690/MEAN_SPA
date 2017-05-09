@@ -22,7 +22,11 @@ var port = process.env.PORT || 8080;
 mongoose.connect(db.url);
 
 // read cookies needed for auth
-app.use(cookieParser()); 
+//app.use(cookieParser()); 
+
+//intialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //parse application/json
 app.use(bodyParser.json());
@@ -38,6 +42,8 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
+
+
 
 // ROUTES
 require('./app/routes')(app); // configure the routes
