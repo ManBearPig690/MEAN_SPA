@@ -7,7 +7,9 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride  = require('method-override');
 var cookieParser = require('cookie-parser');
-
+var passport = require('passport');
+var flash = require('connect-flash');
+var session = require('express-session');
 
 // INITIAL CONFIG
 
@@ -21,11 +23,14 @@ var port = process.env.PORT || 8080;
 mongoose.connect(db.url);
 
 // read cookies needed for auth
-//app.use(cookieParser()); 
+app.use(cookieParser()); 
+
 
 //intialize passport
+app.use(session({secret: 'secret'}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 //parse application/json
 app.use(bodyParser.json());
@@ -49,7 +54,7 @@ app.use(express.static(__dirname + '/public'));
 require('./config/passport')(passport); // same as app.require('./app/passport.js')
 
 // ROUTES
-require('./app/routes')(app); // configure the routes
+require('./app/routes')(app, passport); // configure the routes
 
 //configure passport
 

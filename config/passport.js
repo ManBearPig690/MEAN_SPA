@@ -70,5 +70,5 @@ module.exports = function(app){
             return done(null, user);
         });
     }));
-    
+
 };

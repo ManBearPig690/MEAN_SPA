@@ -1,7 +1,7 @@
 // app/routes.js
 
 // grab the nerd model
-var Nerd = require('./models/nerd.js');
+var Nerd = require('./models/nerd');
 
 
 module.exports = function(app, passport){
@@ -44,7 +44,7 @@ module.exports = function(app, passport){
             res.json({message: 'Nerd Created!'});
         });
     });
-    
+
     // frontend routes
     // route to handle all angular requests
     app.get('*', isAuthenticated, function(req, res){
