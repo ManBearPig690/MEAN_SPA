@@ -2,7 +2,7 @@
 
 // grab the nerd model
 var Nerd = require('./models/nerd');
-var User = require('./models/user.js');
+var User = require('./models/user');
 
 module.exports = function(app, passport){
     // server routes
@@ -57,14 +57,27 @@ module.exports = function(app, passport){
     
     // frontend routes
     // route to handle all angular requests
-
     app.get('/login', function(req, res){
         res.sendFile('/public/views/index.html', {root: './'});
     });
 
-    app.get('*', function(req, res){
+    app.get('/signup', function(req, res){
         res.sendFile('/public/views/index.html', {root: './'}); // load our page
     });
+
+    app.get('/', isAuthenticated, function(req, res){
+        res.sendFile('/public/views/index.html', {root: './'}); // load our page
+    });
+
+    app.get('/profile', isAuthenticated, function(req, res){
+        res.sendFile('/public/views/index.html', {root: './'}); // load our page
+    });
+
+    app.get('/nerd', isAuthenticated, function(req, res){
+        res.sendFile('/public/views/index.html', {root: './'}); // load our page
+    });
+
+    
 
 
 

@@ -1,3 +1,3 @@
 angular.module('LoginCtrl', []).controller('LoginController', function($scope){
-    // login stuff
+    $scope.tagline = "DEAR CUCK";
 });
