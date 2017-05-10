@@ -1,5 +1,24 @@
-<!-- public/views/login.html -->
-<div class="jumbotron text-center" ng-controller="LoginController">
-    <h1>Login</h1>  
-    <p>{{tagline}}</p>
+    <!-- public/views/login.html -->
+<div class="row" ng-controller="LoginController">
+    <div class="col-lg-offset-4 col-lg-4">
+        <div class="jumbotron text-center">
+            <h1>Login</h1>  
+            <form action="/login" method="POST">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                        <input type="password" class="form-control" name="password" placeholder="password">
+                        </label>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+            </form>
+        </div>
+    </div>
 </div>
+
