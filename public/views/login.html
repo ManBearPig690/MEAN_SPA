@@ -2,18 +2,21 @@
 <div class="row" ng-controller="LoginController">
     <div class="col-lg-offset-4 col-lg-4">
         <div class="jumbotron text-center">
-            <h1>Login</h1>  
-            <form action="/login" method="POST">
+            <h1>Login</h1> 
+            <p>{{ tagline }}</p>
+            <form name="loginForm" ng-submit="Submit()">
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label">
-                        <input type="text" class="form-control" name="username" placeholder="Username">
+                        <input type="text" class="form-control" ng-model="username" placeholder="Username" required>
                         </label>
+                        <span class="error" ng-show="loginForm.username.input.$error.required">Required!</span><br>
                     </div>
                     <div class="form-group">
                         <label class="control-label">
-                        <input type="password" class="form-control" name="password" placeholder="password">
+                        <input type="password" class="form-control" ng-model="password" placeholder="Password"required>
                         </label>
+                        <span class="error" ng-show="loginForm.password.input.$error.required">Required!</span><br>
                     </div>
                 </fieldset>
                 <button type="submit" class="btn btn-warning btn-lg">Login</button>

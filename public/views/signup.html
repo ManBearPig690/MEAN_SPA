@@ -1,0 +1,39 @@
+    <!-- public/views/login.html -->
+<div class="row" ng-controller="SignupController">
+    <div class="col-lg-offset-4 col-lg-4">
+        <div class="jumbotron text-center">
+            <h1>Signup</h1>  
+            <form action="/signup" method="POST">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label">
+                        <input type="text" class="form-control" name="user.profile.firstname" placeholder="First Name">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                        <input type="text" class="form-control" name="user.profile.lastname" placeholder="Last Name">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                        <input type="email" class="form-control" name="user.profile.email" placeholder="you@email">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                        <input type="text" class="form-control" name="local.username" placeholder="Username">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">
+                        <input type="password" class="form-control" name="local.password" placeholder="Password">
+                        </label>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
