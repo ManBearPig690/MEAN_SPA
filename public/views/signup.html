@@ -1,39 +1,43 @@
-    <!-- public/views/login.html -->
+<!-- public/views/signup.html -->
+<link rel="stylesheet" href="css/signup.css" />
 <div class="row" ng-controller="SignupController">
-    <div class="col-lg-offset-4 col-lg-4">
-        <div class="jumbotron text-center">
-            <h1>Signup</h1>  
-            <form action="/signup" method="POST">
+    <div class="col-lg-offset-4 col-md-4 signup-form-bg">
+            <form action="/signup" method="POST" class="text-center">
+            <h2>Signup</h2>
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label">
+                        <label class="control-label input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" name="user.profile.firstname" placeholder="First Name">
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">
+                        <label class="control-label input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" name="user.profile.lastname" placeholder="Last Name">
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">
+                        <label class="control-label input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                         <input type="email" class="form-control" name="user.profile.email" placeholder="you@email">
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">
+                        <label class="control-label input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" name="local.username" placeholder="Username">
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">
+                        <label class="control-label input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <input type="password" class="form-control" name="local.password" placeholder="Password">
                         </label>
                     </div>
                 </fieldset>
-                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+                <button type="submit" class="btn btn-primary">Create Account</button>
             </form>
-        </div>
     </div>
 </div>
 

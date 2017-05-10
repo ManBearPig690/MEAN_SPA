@@ -26,10 +26,10 @@ module.exports = function(app){
     passport.use('local-signup', new LocalStrategy({
         passReqToCallback: true
     },
-    function(req, username, password, done){
+    function(req, data, done){
         // asynchronous
         process.nextTick(function(){
-            User.findOne({'local.username': username}, function(err, user){
+            User.findOne({'local.username': data.local.username}, function(err, user){
                 if(err){
                     return done(err);
                 }
@@ -40,8 +40,11 @@ module.exports = function(app){
                     //set the user's local credentials
 
                     var newUser = new User();
-                    newUser.local.username = username;
-                    newUser.local.password = newUser.generateHash(password);
+                    newUser.local.username = data.local.username;
+                    newUser.local.password = newUser.generateHash(data.local.password);
+                    newUser.profile.firstname = data.profile.firstname;
+                    newuser.profile.lastname = data.profile.lastname;
+                    newUser.profile.email = data.profile.email;
 
                     // save the user
                     newUser.save(function(err){

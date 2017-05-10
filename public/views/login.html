@@ -1,27 +1,28 @@
-    <!-- public/views/login.html -->
+<!-- public/views/login.html -->
+<link rel="stylesheet" href="css/login.css" />
 <div class="row" ng-controller="LoginController">
-    <div class="col-lg-offset-4 col-lg-4">
-        <div class="jumbotron text-center">
-            <h1>Login</h1> 
-            <p>{{ tagline }}</p>
-            <form name="loginForm" ng-submit="Submit()">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="control-label">
+    <div class="col-lg-offset-4 col-md-4 login-form-bg">
+        <form name="loginForm" ng-submit="Submit()" class="text-center form">
+            <h2>Login</h2>
+            <fieldset>
+                <div class="form-group">
+                    <label class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" ng-model="username" placeholder="Username" required>
-                        </label>
-                        <span class="error" ng-show="loginForm.username.input.$error.required">Required!</span><br>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">
-                        <input type="password" class="form-control" ng-model="password" placeholder="Password"required>
-                        </label>
-                        <span class="error" ng-show="loginForm.password.input.$error.required">Required!</span><br>
-                    </div>
-                </fieldset>
-                <button type="submit" class="btn btn-warning btn-lg">Login</button>
-            </form>
-        </div>
+                    </label>
+                    <span class="error" ng-show="loginForm.username.input.$error.required">Required!</span><br>
+                </div>
+                <div class="form-group">
+                    <label class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control" ng-mofdel="password" placeholder="Password"required>
+                    </label>
+                    <span class="error" ng-show="loginForm.password.input.$error.required">Required!</span><br>
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-warning">Login</button>
+            <p>Don't have an Account? <a href="/signup">Create Account</a></p>
+        </form>
     </div>
 </div>
 
