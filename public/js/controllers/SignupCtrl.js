@@ -13,7 +13,7 @@ angular.module('SignupCtrl', []).controller('SignupController', function($scope)
     $scope.tagline = "Signup for an account";
     
     // Create the new user
-    $scope.Submit = function(user){
-
+    $scope.Submit = function(){
+        console.log($scope.user);
     };
 });
